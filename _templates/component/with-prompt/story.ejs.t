@@ -1,30 +1,16 @@
 ---
-to: src/components/<%= h.projectCase(name) %>/<%=  h.projectCase(name) %>.stories.js
+to: src/components/<%= h.changeCase.pascal(name) %>/<%= h.changeCase.pascal(name) %>.stories.js
 ---
-import <%= h.changeCase.pascal(name) %> from './index'
+import * as React from 'react'
 
-const meta = {
+import <%= h.changeCase.pascal(name) %> from './<%= h.changeCase.pascal(name) %>'
+
+export default {
   title: 'Components/<%= h.changeCase.pascal(name) %>',
   component: <%= h.changeCase.pascal(name) %>,
-  parameters: {
-    design: [
-      {
-        type: 'figma',
-        name: 'Desktop',
-        url: '',
-        allowFullscreen: true,
-      },
-      {
-        type: 'figma',
-        name: 'Mobile',
-        url: '',
-        allowFullscreen: true,
-      },
-    ],
-  },
 }
-export default meta;
 
-export const Default = {
-   args: {},
-}
+const Template = (args) => <<%= h.changeCase.pascal(name) %> {...args} />
+
+export const Default = Template.bind({})
+Default.args = {}
