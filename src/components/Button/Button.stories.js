@@ -3,16 +3,30 @@ import mocks from './mocks'
 
 import Button from './Button'
 
+const onClick = (e) => {
+  e.preventDefault()
+  alert('I have been clicked')
+}
+
+
+
 export default {
   title: 'Components/Button',
   component: Button,
-  varient: {
-    defaultValue: 'primary',
-    Options: [
-      'primary',
-      'secondary'
-    ]
-  }
+  argTypes: {
+    variant: {
+      defaultValue: 'primary',
+      options: [
+        'primary',
+        'secondary'
+      ],
+      control: { type: 'select' },
+    },
+    label: {
+      defaultValue: 'Learn More',
+      control: { type: 'text' },
+    },
+  },
 }
 
 const Template = (args) => <Button {...args} />
@@ -21,14 +35,14 @@ export const ButtonPrimary = Template.bind({})
 ButtonPrimary.args = {
   variant: 'primary',
   label: 'Get A Quote',
-  // onClick
+  onClick
 }
 
 export const SecondaryButton = Template.bind({})
 SecondaryButton.args = {
   variant: 'secondary',
   label: 'Get A Quote',
-  // onClick
+  onClick
 }
 
 export const Default = Template.bind({})

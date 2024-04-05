@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+// poppins
+// font-family: 'Poppins', sans-serif;
+
+@layer base {
+  h1 {
+    @apply text-[32px] leading-[42px] font-semibold font-poppins text-black;
+  }
+  h2 {
+    @apply text-[28px] leading-9 font-semibold font-poppins text-black;
+  }
+  h3 {
+    @apply text-2xl leading-8 font-semibold font-poppins text-black;
+  }
+  h4 {
+    @apply text-xl leading-[26px] font-semibold font-poppins text-black;
+  }
+  h5 {
+    @apply text-lg leading-6 font-semibold font-poppins text-black;
+  }
+  caption {
+    @apply text-xs font-semibold leading-4 text-black font-poppins;
+  }
+  article {
+    @apply text-base leading-6 font-normal font-poppins text-black;
+  }
+  p {
+    @apply text-base leading-6 font-normal font-poppins text-black;
+  }
+}
