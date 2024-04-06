@@ -1,5 +1,4 @@
 import * as React from 'react'
-import mocks from './mocks'
 
 import Button from './Button'
 
@@ -44,6 +43,12 @@ SecondaryButton.args = {
   label: 'Get A Quote',
   onClick
 }
+export const TertiaryButton = Template.bind({})
+TertiaryButton.args = {
+  variant: 'tertiary',
+  label: 'Get A Quote',
+  onClick
+}
 
 export const Default = Template.bind({})
-Default.args = {...mocks}
+Default.args = {}
