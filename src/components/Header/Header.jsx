@@ -17,7 +17,7 @@ export const Header = ({
   const [selectOption, setSelectOption] = useState('')
 
   const headerClasses = clsx(
-    otherClasses, 'w-full fixed top-0 py-6 flex items-center justify-between bg-blue-500 lg:pl-[360px] lg:pr-20'
+    otherClasses, 'w-full fixed top-0 py-6 flex items-center justify-between bg-blue-500 lg:pl-[360px] lg:pr-20 z-40'
   )
 
   const handleShowDropDown = (e)=>{
