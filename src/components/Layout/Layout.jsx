@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { ToastContainer } from 'react-toastify';
 
 export const Layout = ({
   otherClasses, children
@@ -20,6 +21,7 @@ export const Layout = ({
   return (
     <div className={layoutClasses} data-testid='layout'>
       {children}
+      <ToastContainer/>
     </div>
   )
 }

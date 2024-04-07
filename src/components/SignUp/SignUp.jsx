@@ -7,6 +7,8 @@ import { useRouter } from 'next/router'
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 import { TiWarning } from "react-icons/ti";
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 export const SignUp = ({
   otherClasses
@@ -39,8 +41,16 @@ export const SignUp = ({
 
   const handleOnSubmitt = (e)=>{
        e.preventDefault();
-       localStorage.setItem('user', JSON.stringify(input))
-      //  const confirm = document.getElementById('confirm-password')
+      
+      if(input.name === ''){
+        toast.error('Name is required', {
+          position: "top-center",
+          });
+      }
+      localStorage.setItem('user', JSON.stringify(input))
+      toast.success('🦄 Wow so easy!', {
+        position: "top-center",
+        });
        router.push('/login')
   }
 
@@ -85,11 +95,11 @@ export const SignUp = ({
           ...prev,
           password: e.target.value
         }))} className='px-4 py-2 w-full bg-white rounded-md border border-gray-300 focus:border-blue-500 outline-none' placeholder='Confirm Password'/>
-        <button onClick={()=>handleEyePassword(passwordEye)} className='absolute top-3 right-1'>
+        <div onClick={()=>handleEyePassword(passwordEye)} className='absolute top-3 right-1'>
           {
              passwordEye ? <IoIosEye size={20}/>:<IoIosEyeOff size={20}/>
           }
-        </button>
+        </div>
         </div>
       </div>
       <div className='flex flex-col gap-2 mb-6'>
@@ -99,11 +109,11 @@ export const SignUp = ({
           ...prev,
           confirmpassword: e.target.value
         }))} className='px-4 py-2 w-full bg-white rounded-md border border-gray-300 focus:border-blue-500 outline-none' placeholder='Confirm Password'/>
-        <button onClick={()=>handleEyeConfirmPassword(confirmPasswordEye)} className='absolute top-3 right-1'>
+        <div onClick={()=>handleEyeConfirmPassword(confirmPasswordEye)} className='absolute top-3 right-1'>
           {
              confirmPasswordEye ? <IoIosEye size={20}/>:<IoIosEyeOff size={20}/>
           }
-        </button>
+        </div>
         </div>
        
       </div>

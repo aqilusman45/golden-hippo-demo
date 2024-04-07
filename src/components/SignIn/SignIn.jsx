@@ -6,6 +6,8 @@ import { useState, useRef } from 'react'
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 import { useRouter } from 'next/router'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const SignIn = ({
@@ -27,19 +29,35 @@ export const SignIn = ({
     password: "",
  })
 
-console.log(msgRef, 'msgRef');
+// console.log(msgRef, 'msgRef');
 
  const handleOnLogin = (e)=>{
   e.preventDefault();
   const userCredientials = JSON.parse(localStorage.getItem('user'))
   console.log(userCredientials, 'userCredientials')
+  if(!userCredientials){
+      // msgRef.current.innerText = 'credientials not exist, Please register.'
+      toast.error('credientials not exist, Please register.', {
+        position: "top-center",
+      })
+  }
+  if(userCredientials){
     if(input.email === userCredientials.email && input.password === userCredientials.password){
-         router.push('/')
-         localStorage.setItem('loggedin', true)
-    }
-    else{
-     msgRef.current.innerText = 'invalid credientials, Please check your email and password.'
-    }
+      router.push('/')
+      localStorage.setItem('loggedin', true)
+      toast.success('Hooray! logged in succesfull.', {
+        position: "top-center",
+      })
+ }
+ else{
+  // msgRef.current.innerText = ''
+  toast.error('invalid credientials, Please check your email and password.', {
+    position: "top-center",
+  })
+ }
+  }
+     
+   
  }
 
   

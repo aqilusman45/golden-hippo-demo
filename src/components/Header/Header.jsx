@@ -17,7 +17,7 @@ export const Header = ({
   const [selectOption, setSelectOption] = useState('')
 
   const headerClasses = clsx(
-    otherClasses, 'w-full fixed top-0 py-6 flex items-center justify-between bg-blue-500 lg:pl-[300px] lg:pr-20'
+    otherClasses, 'w-full fixed top-0 py-6 flex items-center justify-between bg-blue-500 lg:pl-[360px] lg:pr-20'
   )
 
   const handleShowDropDown = (e)=>{
@@ -41,6 +41,7 @@ export const Header = ({
   // }, []);
 
   const [userCredentials, setUserCredentials] = useState(null);
+  const [profileImage, setProfileImage] = useState('');
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
@@ -53,6 +54,12 @@ export const Header = ({
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  useEffect(()=>{
+    const storedImage = localStorage.getItem('uploadedImage')
+    setProfileImage(storedImage)
+  }, [])
+ 
 
   useEffect(()=>{
     var letters = '0123456789ABCDEF';
@@ -69,9 +76,12 @@ export const Header = ({
       <div className='relative'>
       {userCredentials && userCredentials.name && (
         <button onClick={()=>handleShowDropDown(dropDownShow)}>
-           <Avatar sx={{ bgcolor: randomColor}} className='uppercase'>
+          {
+            profileImage ? <Avatar src={profileImage} sx={{width: 45, height: 45}}/>: <Avatar sx={{ bgcolor: randomColor, width: 45, height: 45}} className='uppercase' sizes={40}>
             {userCredentials.name.slice(0,1)}
           </Avatar>
+          }
+           
         </button>
          
         )}

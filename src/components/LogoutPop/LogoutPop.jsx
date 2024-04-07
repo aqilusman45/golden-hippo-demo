@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { MdClose } from "react-icons/md";
 import Button from '../Button';
 import { useRouter } from 'next/router';
+import {toast} from 'react-toastify'
 
 export const LogoutPop = ({
   otherClasses, handleClose
@@ -10,11 +11,15 @@ export const LogoutPop = ({
   const logoutPopClasses = clsx(
     otherClasses, 'w-full max-w-[300px] bg-white rounded-md p-4'
   )
+
   const router = useRouter()
 
   const reomoveCredentials = ()=>{
     localStorage.removeItem('loggedin')
     router.push('/login')
+    toast.info('log out success full', {
+      position: "top-center"
+    })
   }
   
   return (
