@@ -11,6 +11,7 @@ export const LogoutPop = ({
   const logoutPopClasses = clsx(
     otherClasses, 'w-full max-w-[300px] bg-white rounded-md p-4'
   )
+  console.log(handleClose, 'logout close');
 
   const router = useRouter()
 

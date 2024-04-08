@@ -21,7 +21,7 @@ export const SideBar = ({
   }
 
   const sideBarClasses = clsx(
-    otherClasses, 'w-full lg:w-[300px] h-screen z-50 fixed top-0 left-0 bg-[#f7f8f9] shadow-xl py-8 px-6 hidden lg:block'
+    otherClasses, 'w-full lg:w-[300px] h-screen z-30 fixed top-0 left-0 bg-[#f7f8f9] shadow-xl py-8 px-6 hidden lg:block'
   )
 
   const router = useRouter()
@@ -51,13 +51,13 @@ export const SideBar = ({
        </button>
       <ul className={clsx('p-4', show? 'block': 'hidden')}>
       <Link href='/dashboard'>
-        <li className={clsx('mb-1 p-4 hover:rounded-md hover:bg-[#eef1f5]', router.asPath === '/dashboard' && 'rounded-md bg-gray-100')}>
-        <p className='text-base text-gray-800  group-hover:bg-gray-100 '>Projects</p>
+        <li className={clsx('mb-1 p-4 hover:rounded-md hover:bg-[#eef1f5]', router.asPath === '/dashboard' && 'rounded-md bg-[#eef1f5]')}>
+        <p className='text-base text-gray-800 '>Projects</p>
         
         </li>
         </Link>
       <Link href='/dashboard/create-project'>
-        <li className={clsx(' p-4 hover:rounded-md hover:bg-[#eef1f5]', router.asPath === '/dashboard/create-project' && 'rounded-md bg-gray-100')}>
+        <li className={clsx(' p-4 hover:rounded-md hover:bg-[#eef1f5]', router.asPath === '/dashboard/create-project' && 'rounded-md bg-[#eef1f5]')}>
         <p className='text-base  text-gray-800 '>Create Project</p>
         
         </li>

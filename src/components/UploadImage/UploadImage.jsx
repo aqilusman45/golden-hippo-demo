@@ -1,9 +1,10 @@
 import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
-import Avatar from '@mui/material/Avatar';
 import Button from '../Button';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { RiDeleteBack2Fill } from "react-icons/ri";
+import placeholder from '../../../public/images/placeholder.jpg'
+import Image from 'next/image'
 
 export const UploadImage = ({
   otherClasses
@@ -51,13 +52,14 @@ export const UploadImage = ({
     <div className={uploadImageClasses} data-testid='upload-image' >
       <button className='absolute top-2 right-0 hidden group-hover:block' onClick={handleRemoveAsset}><RiDeleteBack2Fill size={20}/></button>
       <div className='flex flex-col items-center' onClick={handleOnClick}>
-        {
-        storedImage ? <Avatar alt='' src={storedImage}  style={{marginBottom: '24px'}}
-        sx={{ width: 200, height: 200 }}/> :  <Avatar
-        alt=""
-        style={{marginBottom: '24px'}}
-        sx={{ width: 200, height: 200 }}
-      />
+    
+
+      {
+        storedImage ? (
+          <Image src={storedImage} width={200} height={200} className='rounded-full mb-6'/>
+        ): (
+          <Image src={placeholder} width={200} height={200} className='rounded-full mb-6'/>
+        )
       }
 
       <button className='py-2 px-6 bg-blue-500 rounded-md text-white font-semibold text-base flex items-center gap-5'><p>{fileName ? fileName.slice(0, 10) + '...' : 'upload image'}</p><FaCloudUploadAlt size={20}/></button>

@@ -6,7 +6,7 @@ export const CreateCsvFirstStep = ({
 }) => {
 
   const createCsvFirstStepClasses = clsx(
-    otherClasses,'w-full max-w-[1400px] mx-auto mt-20 rounded-xl mx-4 md:mx-0 p-6 lg:p-10 shadow-md mb-10'
+    otherClasses,'w-full max-w-[1500px] mx-auto mt-20 rounded-xl mx-4 md:mx-0 p-6 lg:p-10 shadow-md mb-10'
   )
   
   return (

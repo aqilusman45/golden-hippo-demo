@@ -1,14 +1,15 @@
 import * as React from 'react';
 import clsx from 'clsx'
-import Avatar from '@mui/material/Avatar';
 import { useEffect, useState } from 'react';
 import { CiLogout } from "react-icons/ci";
 import { IoSettingsOutline } from "react-icons/io5";
-import Modal from '@mui/material/Modal';
+// import Modal from '@mui/material/Modal';
 import LogoutPop from '../LogoutPop';
 import SettingPop from '../SettingPop';
 import Button from '../Button';
 import { useRouter } from 'next/router';
+import Image from 'next/image'
+import ModalComponent from '../ModalComponent';
 
 export const Header = ({
   otherClasses
@@ -21,7 +22,7 @@ export const Header = ({
   const {push} = useRouter()
 
   const headerClasses = clsx(
-    otherClasses, 'w-full fixed top-0 bg-white z-40'
+    otherClasses, 'w-full fixed top-0 bg-white z-30'
   )
 
   const handleShowDropDown = (e)=>{
@@ -78,6 +79,15 @@ export const Header = ({
     setRandomColor(color)
   }, [])
 
+  const [show, setShow] = useState(false);
+
+  const toggleShow = () => {
+    setShow(true);
+  };
+  const toggleCancel = () => {
+    setShow(false);
+  };
+
   return (
     <div className={headerClasses} data-testid='header'>
       <div className='flex items-center justify-between border-b lg:pl-[360px] lg:pr-20 border-b-gray-200 py-6 '>
@@ -86,9 +96,7 @@ export const Header = ({
       {userCredentials && userCredentials.name && (
         <button onClick={()=>handleShowDropDown(dropDownShow)}>
           {
-            profileImage ? <Avatar src={profileImage} sx={{width: 45, height: 45}}/>: <Avatar sx={{ bgcolor: randomColor, width: 45, height: 45}} className='uppercase' sizes={40}>
-            {userCredentials.name.slice(0,1)}
-          </Avatar>
+            profileImage ? <Image src={profileImage} width={45} height={45} className='rounded-full object-cover'/>: <div className='flex items-center pb-2 text-white justify-center uppercase text-3xl w-[45px] h-[45px] rounded-full' style={{background: randomColor}}><span>{userCredentials.name.slice(0, 1)}</span></div>
           }
            
         </button>
@@ -96,37 +104,16 @@ export const Header = ({
         )}
 
         <div ref={ref} className={clsx('bg-white rounded-md p-4 absolute top-16 -left-14 w-full min-w-40 shadow-lg', dropDownShow ? 'block': 'hidden' )}>
-          <button className='flex items-center gap-1 mb-2' onClick={() => { handleOpen(); setSelectOption('setting'); setDropDownShow(false) }}>
+          <button className='flex items-center gap-1 mb-2' onClick={() => { toggleShow(); setSelectOption('setting'); setDropDownShow(false) }}>
           <IoSettingsOutline size={20}/>
           <p>Settings</p>
           </button> 
-          <button className='flex items-center gap-1 text-red-500' onClick={() => { handleOpen(); setSelectOption('logout'); setDropDownShow(false)}}>
+          <button className='flex items-center gap-1 text-red-500' onClick={() => { toggleShow(); setSelectOption('logout'); setDropDownShow(false)}}>
           <CiLogout size={20}/>
            <p>Log out</p>
           </button>
         </div>
-        {
-          selectOption === 'logout' &&   <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <LogoutPop otherClasses='absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4' handleClose={handleClose}/>
-  
-        </Modal>
-        }
-        {
-          selectOption === 'setting' &&   <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <SettingPop otherClasses='absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4' handleClose={handleClose}/>
-  
-        </Modal>
-        }
+        
       
       </div>
       </div>
@@ -134,6 +121,18 @@ export const Header = ({
          <Button variant='link' label='Projects' onClick={()=>{push('/dashboard')}}/>
          <Button variant='link' label='Create Project' onClick={()=>{push('/dashboard/create-project')}}/>
      </div>
+   {
+     selectOption === 'logout' &&  <ModalComponent show={show} handleClose={toggleCancel}>
+     <LogoutPop otherClasses=''  handleClose={toggleCancel}/> 
+    </ModalComponent>
+   }
+   {
+    selectOption === 'setting' && <ModalComponent show={show} handleClose={toggleCancel}>
+          <SettingPop otherClasses='' handleClose={toggleCancel}/>
+    </ModalComponent>
+   }
+       
+      
     </div>
   )
 }

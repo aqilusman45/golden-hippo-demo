@@ -1,8 +1,10 @@
 import Button from "@/components/Button";
 import CreateCsvFirstStep from "@/components/CreateCsvFirstStep";
 import CreateCsvProject from "@/components/CreateCsvProject";
+import CsvProjectField from "@/components/CsvProjectField";
 import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
+import clsx from "clsx";
 import { useState } from "react";
 
 const CreateProject = () => {
@@ -32,11 +34,13 @@ const CreateProject = () => {
       <div className="mt-[240px]  lg:ml-[320px]">
         {componentIndex === 1 && <CreateCsvFirstStep />}
         {componentIndex === 2 && <CreateCsvProject />}
-        <div className="w-full flex items-center justify-between">
+        {componentIndex === 3 && <CsvProjectField/>}
+        <div className="w-full flex items-center justify-between px-6 lg:px-10">
           <Button
             variant="link"
             label="Previous"
             onClick={() => handleNavigatePrev(componentIndex)}
+            otherClasses={clsx(componentIndex === 1 && "opacity-70 cursor-not-allowed hover:bg-none focus:border-none")}
           />
           <Button
             variant="link"
