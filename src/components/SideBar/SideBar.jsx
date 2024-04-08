@@ -5,43 +5,68 @@ import Link from 'next/link'
 import { FaTableCellsLarge } from "react-icons/fa6";
 import { BiSolidCube } from "react-icons/bi";
 import { useRouter } from 'next/router';
+import { FaChevronDown } from "react-icons/fa";
+import Icon from '../Icon';
+import { useEffect, useState } from 'react';
 
 export const SideBar = ({
   otherClasses
 }) => {
 
+
+  const [show, setShow] = useState(false)
+
+  const toggleFunc = (e)=>{
+      setShow(!e)
+  }
+
   const sideBarClasses = clsx(
-    otherClasses, 'w-full lg:w-[300px] h-screen z-50 fixed top-0 left-0 bg-white shadow-xl py-8 px-6 hidden lg:block'
+    otherClasses, 'w-full lg:w-[300px] h-screen z-50 fixed top-0 left-0 bg-[#f7f8f9] shadow-xl py-8 px-6 hidden lg:block'
   )
 
   const router = useRouter()
   console.log(router);
+
+  useEffect(()=>{
+    if (router.pathname){
+      setShow(true)
+    } 
+  }, [])
   
   return (
     <div className={sideBarClasses} data-testid='side-bar'>
       <Link href='/' className='group flex items-center gap-2 mb-10'>
        <Image src={logo} width={30} height={30}/>
-       <p className='text-base font-bold font-Poppins text-gray-800 group-hover:text-blue-400 uppercase tracking-tighter'>goldenhippo sge</p>
+       <p className='text-base font-semibold font-Poppins text-gray-800 group-hover:text-blue-400 uppercase tracking-tighter'>goldenhippo sge</p>
       </Link>
-      <ul className='border-y border-y-gray-300 py-10'>
+      <div>
+      <button className='flex items-center justify-between w-full rounded-md hover:bg-gray-100 p-4' onClick={()=>toggleFunc(show)}>
+        <div className='flex items-center gap-1'>
+          <Icon icon='my-queues-icon' iconWidth={30} iconHeight={30}/>
+           <p>My queues</p>
+        </div>
+         <div className={clsx('transition ease-in-out duration-300', show ? 'rotate-180': 'rotate-0')}>
+         <FaChevronDown/> 
+         </div> 
+       </button>
+      <ul className={clsx('p-4', show? 'block': 'hidden')}>
       <Link href='/dashboard'>
-        <li className={clsx('flex items-center gap-2 hover:text-blue-500 focus:text-blue-400 group mb-5', router.asPath === '/dashboard' && 'text-blue-400 [&>p]:text-blue-400')}>
-          
-        <FaTableCellsLarge size={15}/>
-        <p className='text-sm font-bold text-gray-800 uppercase group-hover:text-blue-400 group-focus:text-blue-500'>Projects</p>
+        <li className={clsx('mb-1 p-4 hover:rounded-md hover:bg-[#eef1f5]', router.asPath === '/dashboard' && 'rounded-md bg-gray-100')}>
+        <p className='text-base text-gray-800  group-hover:bg-gray-100 '>Projects</p>
         
         </li>
         </Link>
       <Link href='/dashboard/create-project'>
-        <li className={clsx('flex items-center gap-2 hover:text-blue-400 focus:text-blue-400 group', router.asPath === '/dashboard/create-project' && 'text-blue-400 [&>p]:text-blue-400')}>
-          
-        <BiSolidCube size={20}/>
-        <p className='text-sm font-bold text-gray-800 uppercase group-hover:text-blue-400 group-focus:text-blue-300'>create project</p>
+        <li className={clsx(' p-4 hover:rounded-md hover:bg-[#eef1f5]', router.asPath === '/dashboard/create-project' && 'rounded-md bg-gray-100')}>
+        <p className='text-base  text-gray-800 '>Create Project</p>
         
         </li>
         </Link>
 
       </ul>
+
+      </div>
+      
     </div>
   )
 }

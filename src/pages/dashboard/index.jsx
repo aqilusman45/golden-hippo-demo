@@ -8,8 +8,8 @@ const Dashboard =()=>{
     return <div className="">
       <Header/> 
       <SideBar/>
-      <ProjectGrid/>
-      <ChartSection/>
+      {/* <ProjectGrid/>
+      <ChartSection/> */}
     </div>
 }
 export default Dashboard;

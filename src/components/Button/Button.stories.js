@@ -49,6 +49,12 @@ TertiaryButton.args = {
   label: 'Get A Quote',
   onClick
 }
+export const LinkButton = Template.bind({})
+LinkButton.args = {
+  variant: 'link',
+  label: 'Get A Quote',
+  onClick
+}
 
 export const Default = Template.bind({})
 Default.args = {}

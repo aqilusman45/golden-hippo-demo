@@ -7,6 +7,8 @@ import { IoSettingsOutline } from "react-icons/io5";
 import Modal from '@mui/material/Modal';
 import LogoutPop from '../LogoutPop';
 import SettingPop from '../SettingPop';
+import Button from '../Button';
+import { useRouter } from 'next/router';
 
 export const Header = ({
   otherClasses
@@ -16,8 +18,10 @@ export const Header = ({
   const [randomColor, setRandomColor] = useState('');
   const [selectOption, setSelectOption] = useState('')
 
+  const {push} = useRouter()
+
   const headerClasses = clsx(
-    otherClasses, 'w-full fixed top-0 py-6 flex items-center justify-between bg-blue-500 lg:pl-[360px] lg:pr-20 z-40'
+    otherClasses, 'w-full fixed top-0 bg-white z-40'
   )
 
   const handleShowDropDown = (e)=>{
@@ -50,6 +54,10 @@ export const Header = ({
     }
   }, []);
 
+  // const handleOnLink = ()=>{
+  //   router.push
+  // }
+
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -72,7 +80,8 @@ export const Header = ({
 
   return (
     <div className={headerClasses} data-testid='header'>
-      <p className='text-base font-bold uppercase text-white'>dashboard</p>
+      <div className='flex items-center justify-between border-b lg:pl-[360px] lg:pr-20 border-b-gray-200 py-6 '>
+      <p className='text-2xl font-bold  text-gray-900'>Dashboard</p>
       <div className='relative'>
       {userCredentials && userCredentials.name && (
         <button onClick={()=>handleShowDropDown(dropDownShow)}>
@@ -120,6 +129,11 @@ export const Header = ({
         }
       
       </div>
+      </div>
+     <div className='pt-6 pb-10 border-b border-b-gray-200 lg:pl-[360px] lg:pr-20 flex gap-6'>
+         <Button variant='link' label='Projects' onClick={()=>{push('/dashboard')}}/>
+         <Button variant='link' label='Create Project' onClick={()=>{push('/dashboard/create-project')}}/>
+     </div>
     </div>
   )
 }
