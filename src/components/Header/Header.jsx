@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import { useEffect, useState } from 'react';
 import { CiLogout } from "react-icons/ci";
 import { IoSettingsOutline } from "react-icons/io5";
-// import Modal from '@mui/material/Modal';
 import LogoutPop from '../LogoutPop';
 import SettingPop from '../SettingPop';
 import Button from '../Button';
@@ -123,12 +122,12 @@ export const Header = ({
      </div>
    {
      selectOption === 'logout' &&  <ModalComponent show={show} handleClose={toggleCancel}>
-     <LogoutPop otherClasses=''  handleClose={toggleCancel}/> 
+     <LogoutPop   handleClose={toggleCancel}/> 
     </ModalComponent>
    }
    {
     selectOption === 'setting' && <ModalComponent show={show} handleClose={toggleCancel}>
-          <SettingPop otherClasses='' handleClose={toggleCancel}/>
+          <SettingPop handleClose={toggleCancel}/>
     </ModalComponent>
    }
        
