@@ -43,8 +43,8 @@ export const ProjectGrid = ({
         </p>
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10">
            {
-            data.map(({title, number})=>{
-              return <div className='p-4 bg-white rounded-md shadow-md'>
+            data.map(({title, number}, i)=>{
+              return <div className='p-4 bg-white rounded-md shadow-md' key={i}>
                    <p className='text-xl font-bold text-gray-800 font-Poppin'>{title}</p>
                    <span className='text-[48px] font-bold text-gray-800 font-Poppin'>{number}</span>
               </div>
