@@ -46,12 +46,26 @@ export const SignUp = ({
         toast.error('Name is required', {
           position: "top-center",
           });
-      }
-      localStorage.setItem('user', JSON.stringify(input))
-      toast.success('🦄 Wow so easy!', {
+      } else if(input.email === ''){
+        toast.error('Please put email',  {
+          position: "top-center",
+          })
+      } else if(input.password === ''){
+          toast.error('password is ', {
+            position: "top-center"
+          })
+      } else if(input.confirmpassword != input.password){
+        toast.error('not confirm please check us', {
+          position: "top-center"
+        })
+      } else {
+        localStorage.setItem('user', JSON.stringify(input))
+      toast.success('Your Account created!', {
         position: "top-center",
         });
        router.push('/login')
+      }
+      
   }
 
   const signUpClasses = clsx(
@@ -71,14 +85,14 @@ export const SignUp = ({
         <input type="text" value={input.name} onChange={(e)=>setInput((prev)=>({
           ...prev,
           name: e.target.value
-        }))} name="name" id="name" className='px-4 py-2 bg-white rounded-md border border-gray-300 focus:border-blue-500 outline-none' required placeholder='Name'/>
+        }))} name="name" id="name" className='px-4 py-2 bg-white rounded-md border border-gray-300 focus:border-blue-500 outline-none'  placeholder='Name'/>
       </div>
       <div className='flex flex-col gap-2 mb-6 w-[180px]'>
         <label htmlFor="" className='text-xs text-gray-500 font-semibold'>Last Name</label>
         <input type="text" value={input.lastname} onChange={(e)=>setInput((prev)=>({
           ...prev,
           lastname: e.target.value
-        }))} name="lastname" id="lastname" className='px-4 py-2 bg-white rounded-md border border-gray-300 focus:border-blue-500 outline-none ' required placeholder='Last Name'/>
+        }))} name="lastname" id="lastname" className='px-4 py-2 bg-white rounded-md border border-gray-300 focus:border-blue-500 outline-none '  placeholder='Last Name'/>
       </div>
       </div>
       <div className='flex flex-col gap-2 mb-6'>
@@ -86,7 +100,7 @@ export const SignUp = ({
         <input type="email" name="email" id="email" value={input.email}  onChange={(e)=>setInput((prev)=>({
           ...prev,
           email: e.target.value
-        }))}  className='px-4 py-2 bg-white rounded-md border border-gray-300 focus:border-blue-500 outline-none ' required placeholder='Email'/>
+        }))}  className='px-4 py-2 bg-white rounded-md border border-gray-300 focus:border-blue-500 outline-none '  placeholder='Email'/>
       </div>
       <div className='flex flex-col gap-2 mb-6'>
         <label htmlFor="" className='text-xs text-gray-500 font-semibold'>Password</label>
