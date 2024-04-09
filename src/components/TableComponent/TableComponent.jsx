@@ -30,23 +30,26 @@ export const TableComponent = ({
     []
    )
 
-  const data = [
-    {
-      id: '01',  
-      name: 'herry',
-      salary: '300000'
-    },
-    {
-      id: '02',  
-      name: 'kaka',
-      salary: '700000'
-    },
-    {
-      id: '01',  
-      name: 'James',
-      salary: '900000'
-    },
-  ]
+   const data = React.useMemo(
+    () =>  [
+      {
+        id: '01',  
+        name: 'John Doe',
+        address: '123 Main St',
+        date: '2024-04-09',
+        salary: 50000
+      },
+      {
+        id: '02',  
+        name: 'Jane Smith',
+        address: '456 Elm St',
+        date: '2024-04-10',
+        salary: 60000
+      },
+      // Add more sample data objects here if needed
+    ], 
+    []
+  );
   
 
  const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable({
@@ -56,30 +59,29 @@ export const TableComponent = ({
 
   return (
     <div className={tableComponentClasses} data-testid='table-component'>
-      <table className='w-full' {...getTableProps()}>
-        <thead>
-        {headerGroups.map(headerGroup => (
-   <tr {...headerGroup.getHeaderGroupProps()}>
-     {headerGroup.headers.map(column => (
-       <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-     ))}
-   </tr>
- ))}
-             
-          {/* <tr>
-            <th>Id</th>
-            <th>Gender</th>
-            <th>Salary</th>
-          </tr> */}
-        </thead>
-        <tbody>
-          {/* <tr>
-            <td>01</td>
-            <td>Male</td>
-            <td>100000</td>
-          </tr> */}
-        </tbody>
-      </table>
+    <table className='w-full' {...getTableProps()}>
+  <thead>
+    {headerGroups.map(headerGroup => (
+      <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
+        {headerGroup.headers.map(column => (
+          <th key={column.id} {...column.getHeaderProps()}>{column.render('Header')}</th>
+        ))}
+      </tr>
+    ))}
+  </thead>
+  <tbody {...getTableBodyProps()}>
+    {rows.map(row => {
+      prepareRow(row)
+      return (
+        <tr key={row.id} {...row.getRowProps()}>
+          {row.cells.map(cell => (
+            <td key={cell.id} {...cell.getCellProps()}>{cell.render("Cell")}</td>
+          ))}
+        </tr>
+      )
+    })}
+  </tbody>
+</table>
     </div>
   )
 }

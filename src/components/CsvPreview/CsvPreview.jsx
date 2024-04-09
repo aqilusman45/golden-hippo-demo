@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import TableComponent from '../TableComponent'
 
 export const CsvPreview = ({
   otherClasses
@@ -10,7 +11,7 @@ export const CsvPreview = ({
   
   return (
     <div className={csvPreviewClasses} data-testid='csv-preview'>
-      New Component!
+    <TableComponent/>
     </div>
   )
 }
