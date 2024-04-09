@@ -26,6 +26,7 @@
     "react-papaparse": "^4.4.0",
     "react-table": "^7.8.0",
     "react-toastify": "^10.0.5",
+    "sass": "^1.74.1",
     "scss": "^0.2.4"
   },
   "devDependencies": {
