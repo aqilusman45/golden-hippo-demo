@@ -35,16 +35,7 @@ export const CreateCsvProject = ({
         <p className=''>Upload CSV</p>
       <CSVReader
       onUploadAccepted={(results) => {
-        if (results[0]?.type !== "text/csv") {
-          // toast.error('file type is not acceptable', {
-          //   position: 'top-center'
-          // })
-        } else {
           setData(results);
-          toast.success('file uploaded successfull!', {
-            position: 'top-center'
-          })
-        }
       }}
     >
       {({

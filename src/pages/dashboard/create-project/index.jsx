@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import CreateCsvFirstStep from "@/components/CreateCsvFirstStep";
 import CreateCsvProject from "@/components/CreateCsvProject";
+import CsvPreview from "@/components/CsvPreview";
 import CsvProjectField from "@/components/CsvProjectField";
 import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
@@ -35,6 +36,7 @@ const CreateProject = () => {
         {componentIndex === 1 && <CreateCsvFirstStep />}
         {componentIndex === 2 && <CreateCsvProject />}
         {componentIndex === 3 && <CsvProjectField/>}
+        {componentIndex === 4 && <CsvPreview/>}
         <div className="w-full flex items-center justify-between px-6 lg:px-10">
           <Button
             variant="link"

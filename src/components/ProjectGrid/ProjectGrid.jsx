@@ -5,7 +5,7 @@ export const ProjectGrid = ({
 }) => {
 
   const projectGridClasses = clsx(
-    otherClasses, 'mt-[95px] lg:ml-[300px] bg-blue-500 px-6 py-10 lg:p-10'
+    otherClasses, 'mt-[200px] lg:ml-[300px] bg-gray-50 px-6 py-10 lg:p-10'
   )
 
   const data = [
@@ -38,7 +38,7 @@ export const ProjectGrid = ({
   return (
     <div className={projectGridClasses} data-testid='project-grid'>
       <div className='w-full max-w-[1600px]'>
-        <p className='text-4xl lg:text-[48px] font-bold text-white font-Poppin mb-6'>
+        <p className='text-4xl lg:text-[48px] font-light text-gray-900 font-Poppin mb-6'>
         New project 
         </p>
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10">

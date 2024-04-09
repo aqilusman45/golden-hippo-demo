@@ -9,9 +9,11 @@ import Button from '../Button';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
 import ModalComponent from '../ModalComponent';
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import logo from '../../../public/images/logo.png'
 
 export const Header = ({
-  otherClasses
+  otherClasses, showSideBar, handleShowSideBar
 }) => {
 
   const [dropDownShow, setDropDownShow] = useState(false)
@@ -28,22 +30,6 @@ export const Header = ({
       setDropDownShow(!e)
   }
 
-  const ref = React.useRef(null);
-  
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (ref.current && !ref.current.contains(event.target)) {
-  //       setDropDownShow(false);
-  //     }
-  //   };
-
-  //   document.body.addEventListener('click', handleClickOutside);
-
-  //   return () => {
-  //     document.body.removeEventListener('click', handleClickOutside);
-  //   };
-  // }, []);
-
   const [userCredentials, setUserCredentials] = useState(null);
   const [profileImage, setProfileImage] = useState('');
 
@@ -54,14 +40,6 @@ export const Header = ({
     }
   }, []);
 
-  // const handleOnLink = ()=>{
-  //   router.push
-  // }
-
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   useEffect(()=>{
     const storedImage = localStorage.getItem('uploadedImage')
@@ -87,10 +65,17 @@ export const Header = ({
     setShow(false);
   };
 
+ 
+
   return (
     <div className={headerClasses} data-testid='header'>
-      <div className='flex items-center justify-between border-b lg:pl-[360px] lg:pr-20 border-b-gray-200 py-6 '>
-      <p className='text-2xl font-bold  text-gray-900'>Dashboard</p>
+      <div className='flex items-center justify-between border-b lg:pl-[360px] px-6 lg:pr-20 border-b-gray-200 py-6 '>
+        <button className='lg:hidden' onClick={()=>handleShowSideBar(showSideBar)}>
+        <HiOutlineMenuAlt2 size={25}/>
+        </button>
+
+        <Image src={logo} width={45} height={45} className='lg:hidden'/>
+      <p className='text-2xl font-bold  text-gray-900 hidden lg:block'>Dashboard</p>
       <div className='relative'>
       {userCredentials && userCredentials.name && (
         <button onClick={()=>handleShowDropDown(dropDownShow)}>
@@ -102,7 +87,7 @@ export const Header = ({
          
         )}
 
-        <div ref={ref} className={clsx('bg-white rounded-md p-4 absolute top-16 -left-14 w-full min-w-40 shadow-lg', dropDownShow ? 'block': 'hidden' )}>
+        <div className={clsx('bg-white rounded-md p-4 absolute top-16 -left-14 w-full min-w-40 shadow-lg', dropDownShow ? 'block': 'hidden' )}>
           <button className='flex items-center gap-1 mb-2' onClick={() => { toggleShow(); setSelectOption('setting'); setDropDownShow(false) }}>
           <IoSettingsOutline size={20}/>
           <p>Settings</p>
