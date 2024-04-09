@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
 export const Button = ({
-  otherClasses, onClick, label, variant 
+  otherClasses, onClick, label, variant, disabled
 }) => {
 
   const buttonClasses = clsx(
@@ -13,7 +13,7 @@ export const Button = ({
 
   )
   return (
-    <button onClick={onClick} className={buttonClasses} data-testid='button'>
+    <button onClick={onClick} className={buttonClasses} disabled={disabled} data-testid='button'>
       <span>{label}</span>
     </button>
   )

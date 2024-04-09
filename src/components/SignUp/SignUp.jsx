@@ -51,7 +51,7 @@ export const SignUp = ({
           position: "top-center",
           })
       } else if(input.password === ''){
-          toast.error('password is ', {
+          toast.error('password is required', {
             position: "top-center"
           })
       } else if(input.confirmpassword != input.password){

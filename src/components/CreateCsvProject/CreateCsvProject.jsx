@@ -7,7 +7,7 @@ import Heading from '../Heading';
 import {toast} from 'react-toastify'
 
 export const CreateCsvProject = ({
-  otherClasses
+  otherClasses, handleDataProps, componentIndex, handleNavigateNext, handleNavigatePrev
 }) => {
 
   const createCsvProjectClasses = clsx(
@@ -27,7 +27,8 @@ export const CreateCsvProject = ({
   }
 
   console.log(data, 'CSV');
-  
+
+  const csvData = data
   
   return (
     <div className={createCsvProjectClasses} data-testid='create-csv-project'>
@@ -53,6 +54,19 @@ export const CreateCsvProject = ({
       )}
     </CSVReader>
   
+      </div>
+      <div className='w-full flex items-center justify-between'>
+         <Button
+            variant="link"
+            label="Previous"
+            onClick={() => handleNavigatePrev(componentIndex)}
+            otherClasses={clsx(componentIndex === 1 && "opacity-70 cursor-not-allowed hover:bg-none focus:border-none")}
+          />
+          <Button
+            variant="link"
+            label="Next"
+            onClick={() => {data.length === 0 ? "" :handleNavigateNext(componentIndex); handleDataProps(csvData)}}
+          />
       </div>
     </div>
   )

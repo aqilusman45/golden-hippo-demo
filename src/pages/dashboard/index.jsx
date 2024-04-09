@@ -14,6 +14,8 @@ const Dashboard =()=>{
   const handleCollapseSideBar=()=>{
     setShowSideBar(false)
   }
+
+  
     return <div className="">
       <Header showSideBar={showSideBar} handleShowSideBar={handleShowSideBar}/> 
       <SideBar showSideBar={showSideBar} handleCollapseSideBar={handleCollapseSideBar}/>
